@@ -30,7 +30,8 @@ public class TurretBulletSpawner : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Destroy(other.gameObject);
+            Destroy(gameObject);
+            Destroy(other.gameObject);//enem kill
         }
     }
 }
