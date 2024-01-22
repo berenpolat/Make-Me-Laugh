@@ -1,18 +1,21 @@
 using UnityEngine;
 
-public class FloorClickDetector : MonoBehaviour
+namespace PlayerScripts
 {
-    private void Update()
+    public class FloorClickDetector : MonoBehaviour
     {
-        if (Input.GetMouseButtonDown(0))
+   
+        private void Update()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-            
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Floor")))
+            if (Input.GetMouseButtonDown(1))
             {
-                PlayerMovements.Instance.MoveToPosition(hit.point);
-                Debug.Log(hit.point);
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+            
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("Floor")) )
+                {
+                    PlayerMovements.Instance.MoveToPosition(hit.point);
+                }
             }
         }
     }

@@ -1,21 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class FloorClickHandler : MonoBehaviour
+namespace TurretSpawnerScripts
 {
-    public TurretSpawner turretButton;
-
-    void Update()
+    public class FloorClickHandler : MonoBehaviour
     {
-        if (turretButton.isPlacingTurret && Input.GetMouseButtonDown(0))
-        {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+        public TurretSpawner turretButton;
 
-            if (Physics.Raycast(ray, out hit))
+        void Update()
+        {
+            if (turretButton.isPlacingTurret && Input.GetMouseButtonDown(0))
             {
-                turretButton.PlaceTurret(new Vector3(hit.point.x,hit.point.y+0.5f,hit.point.z));
+                Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit))
+                {
+                    turretButton.PlaceTurret(new Vector3(hit.point.x,hit.point.y+0.5f,hit.point.z));
+                }
             }
         }
     }
