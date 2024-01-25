@@ -38,7 +38,7 @@ public class WaveSpawner : MonoBehaviour
                 if (canAnimate)
                 {
                     waveName.text = waves[currentWaveNumber + 1].waveName;
-                    animator.SetTrigger("waveComplete");
+                    animator.SetTrigger("WaveComplate");
                     canAnimate = false;
                 }
             }
