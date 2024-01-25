@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,9 +8,7 @@ namespace PlayerScripts
     {
         public static PlayerMovements Instance; 
         public TurretSpawner turretButton;
-    
-
-        private NavMeshAgent navMeshAgent;
+        private NavMeshAgent _navMeshAgent;
 
         private void Awake()
         {
@@ -18,13 +17,14 @@ namespace PlayerScripts
             else
                 Destroy(gameObject);
 
-            navMeshAgent = GetComponent<NavMeshAgent>();
+            _navMeshAgent = GetComponent<NavMeshAgent>();
         }
 
         public void MoveToPosition(Vector3 targetPosition)
         {
             if(!turretButton.isPlacingTurret)
-                navMeshAgent.SetDestination(targetPosition);
+                _navMeshAgent.SetDestination(targetPosition);
+           
         }
     }
 }

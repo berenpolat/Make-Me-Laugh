@@ -1,23 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemySpawner : MonoBehaviour
+namespace EnemyScripts
 {
-    public GameObject enemyPrefab;
-    public float spawnInterval = 2f;
-    public int maxEnemies = 10;
-
-    private void Start()
+    public class EnemySpawner : MonoBehaviour
     {
-        InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
-    }
+        public GameObject enemyPrefab;
+        public float spawnInterval = 2f;
+        public int maxEnemies = 10;
 
-    void SpawnEnemy()
-    {
-        if (GameObject.FindGameObjectsWithTag("Enemy").Length < maxEnemies)
+        private void Start()
         {
-            Instantiate(enemyPrefab, transform.position, transform.rotation);
+            InvokeRepeating("SpawnEnemy", 0f, spawnInterval);
+        }
+    
+        void SpawnEnemy()
+        {
+            if (GameObject.FindGameObjectsWithTag("Enemy").Length < maxEnemies)
+            {
+                Instantiate(enemyPrefab, transform.position, transform.rotation);
+            }
         }
     }
 }
