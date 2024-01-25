@@ -6,8 +6,14 @@ namespace TurretSpawnerScripts
     {
         public TurretSpawner turretButton;
 
+        
         void Update()
         {
+            if (turretButton.isPlacingTurret)
+            {
+                UpdateTurretPreview();
+            }
+            
             if (turretButton.isPlacingTurret && Input.GetMouseButtonDown(0))
             {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -17,6 +23,17 @@ namespace TurretSpawnerScripts
                 {
                     turretButton.PlaceTurret(new Vector3(hit.point.x,hit.point.y+0.5f,hit.point.z));
                 }
+            }
+        }
+        
+        private void UpdateTurretPreview()
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                turretButton.UpdateTurretPreview(new Vector3(hit.point.x, hit.point.y + 0.5f, hit.point.z));
             }
         }
     }

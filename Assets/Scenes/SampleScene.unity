@@ -593,7 +593,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 439, y: 589}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 100.56, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &824085914
 GameObject:
@@ -1140,7 +1140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 009a264548e445443b7c11a32ae26e55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Turret: {fileID: 100000, guid: f3805001679a8724791bd748d9dab428, type: 3}
+  TurretPrefab: {fileID: 100000, guid: f3805001679a8724791bd748d9dab428, type: 3}
   isPlacingTurret: 0
 --- !u!114 &1381324676
 MonoBehaviour:
@@ -2050,7 +2050,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2083002926}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

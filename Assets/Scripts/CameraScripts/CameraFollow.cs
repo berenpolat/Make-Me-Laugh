@@ -75,20 +75,20 @@ public class CameraFollow : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f && _camera.fieldOfView < 115f)
-        {
-            //  _camera.DOFieldOfView(_camera.fieldOfView + 15, .4f);
-            gameObject.transform.DOMoveY(gameObject.transform.position.y + 15, .4f);
-            // cameraSpeed = cameraSpeed - 2;
-        }
-
-
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f && _camera.fieldOfView > 45)
-        {
-            // _camera.DOFieldOfView(_camera.fieldOfView-15, .4f);
-            gameObject.transform.DOMoveY(gameObject.transform.position.y - 15, .4f);
-            // cameraSpeed = cameraSpeed + 2;
-        }
+        // if (Input.GetAxis("Mouse ScrollWheel") > 0f && _camera.fieldOfView < 115f)
+        // {
+        //     //  _camera.DOFieldOfView(_camera.fieldOfView + 15, .4f);
+        //     gameObject.transform.DOMoveY(gameObject.transform.position.y + 15, .4f);
+        //     // cameraSpeed = cameraSpeed - 2;
+        // }
+        //
+        //
+        // if (Input.GetAxis("Mouse ScrollWheel") < 0f && _camera.fieldOfView > 45)
+        // {
+        //     // _camera.DOFieldOfView(_camera.fieldOfView-15, .4f);
+        //     gameObject.transform.DOMoveY(gameObject.transform.position.y - 15, .4f);
+        //     // cameraSpeed = cameraSpeed + 2;
+        // }
 
         if (Input.GetKey(KeyCode.UpArrow))
         {
