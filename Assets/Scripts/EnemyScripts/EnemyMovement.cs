@@ -1,3 +1,5 @@
+using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -5,17 +7,10 @@ namespace EnemyScripts
 {
     public class EnemyMovement : MonoBehaviour
     {
-        // [SerializeField] private Transform player;
-        // [SerializeField] private Transform tower;
-        // NavMeshAgent _agent;
-        //
-        // void Start()
-        // {
-        //     _agent = GetComponent<NavMeshAgent>();
-        // }
-        // void Update()
-        // {
-        //     _agent.destination = tower.position;
-        // }
+        private void Update()
+        {
+            transform.DOMove(GameObject.FindGameObjectWithTag("Tower").transform.position, 1F);
+            Debug.Log("sjsedhdhvfk");
+        }
     }
 }

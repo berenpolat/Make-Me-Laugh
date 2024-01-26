@@ -5,20 +5,47 @@ using UnityEngine;
 public class movement : MonoBehaviour
 {
     private CharacterController controller;
-    public static float playerSpeed = 20.0f;
+    private bool isDash = false;
+    public float playerSpeed = 5f;
+    public float dashMultiplier = 20f;
+    public float dashDuration = 0.5f;
+    private float dashTimer;
 
-    private void Start()
+
+    void Start()
     {
-        controller = gameObject.AddComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
     }
 
     void FixedUpdate()
     {
-        // Oyuncu hareketi
+        // Player movement
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        controller.Move(move * Time.deltaTime * playerSpeed);
+
+        // Dash input
+        if (Input.GetKeyDown(KeyCode.RightShift) && dashTimer <= 0f)
+        {
+            dashTimer = dashDuration;
+        }
+
+        // Apply dash or normal movement
+        if (dashTimer > 0f)
+        {
+            // Dash movement
+            float dashSpeed = playerSpeed * dashMultiplier;
+            controller.Move(move * Time.deltaTime * dashSpeed);
+            dashTimer -= Time.deltaTime;
+        }
+        else
+        {
+            // Normal movement
+            controller.Move(move * Time.deltaTime * playerSpeed);
+        }
+
+        // Aim method
         Aim();
     }
+
 
     void Aim()
     {
@@ -26,15 +53,16 @@ public class movement : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        // Ray ile týklanan yere doðru bir çizgi çiz ve çarpýþma kontrolü yap
+        // Ray ile tï¿½klanan yere doï¿½ru bir ï¿½izgi ï¿½iz ve ï¿½arpï¿½ï¿½ma kontrolï¿½ yap
         if (Physics.Raycast(ray, out hit))
         {
-            // Niþan alma yönünü belirle
+            // Niï¿½an alma yï¿½nï¿½nï¿½ belirle
             Vector3 targetDirection = hit.point - transform.position;
             targetDirection.y = 0f;
 
-            // Topun niþan alma yönüne dönmesini saðla
+            // Topun niï¿½an alma yï¿½nï¿½ne dï¿½nmesini saï¿½la
             transform.forward = targetDirection.normalized;
         }
     }
+    
 }
