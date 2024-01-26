@@ -96,10 +96,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7841944383321557150}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f688a202e432224f8fd6457aa322776, type: 3}
+  m_Script: {fileID: 11500000, guid: 464e98c79230a5d40942ee6273eb8ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretButton: {fileID: 0}
 --- !u!136 &5165524757085682875
 CapsuleCollider:
   m_ObjectHideFlags: 0
