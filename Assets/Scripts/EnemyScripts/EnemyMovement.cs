@@ -29,10 +29,11 @@ namespace EnemyScripts
             playerPosition = player.transform.position;
             distanceBetweenPlayer = Vector3.Distance(currentPosition, playerPosition);
             moveStep = moveSpeed * Time.deltaTime;
-
+            
             currentPosition = Vector3.MoveTowards(currentPosition,
                 distanceBetweenPlayer > maxDistanceBetweenPlayer ? childTowerPosition : playerPosition, 
                 moveStep);
+            transform.position = currentPosition;
         }
     }
 }

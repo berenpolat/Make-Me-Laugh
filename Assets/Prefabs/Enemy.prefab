@@ -146,5 +146,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f4ebe8995e8a44a8fbd4e00d2e4743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 3485713341922126548, guid: a903305b2d7312248b0c526df8ed1d81, type: 3}
-  tower: {fileID: 3485713341922126548, guid: a903305b2d7312248b0c526df8ed1d81, type: 3}
+  moveSpeed: 10
+  maxDistanceBetweenPlayer: 10
