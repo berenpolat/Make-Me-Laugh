@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Tower
   - Bullet
+  - Body
+  - Helper
   layers:
   - Default
   - TransparentFX
