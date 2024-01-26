@@ -12,7 +12,7 @@ public class movement : MonoBehaviour
         controller = gameObject.AddComponent<CharacterController>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // Oyuncu hareketi
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
