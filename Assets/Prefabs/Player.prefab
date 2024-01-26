@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5165524757085682875}
   - component: {fileID: 6723206561174876001}
   - component: {fileID: 3817182604148346714}
+  - component: {fileID: 9159632048907770987}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -99,6 +100,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464e98c79230a5d40942ee6273eb8ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpeed: 5
+  dashMultiplier: 5
+  dashDuration: 0.1
 --- !u!136 &5165524757085682875
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -171,3 +175,29 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!143 &9159632048907770987
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841944383321557150}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
