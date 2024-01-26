@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shooting : MonoBehaviour
 {
-    enum GunType
+    public enum BulletType
     {
         Shotgun = 0,
         Rifle = 1,
@@ -15,11 +15,10 @@ public class Shooting : MonoBehaviour
     public GameObject bulletPrefab;
 
     [SerializeField]private float shootCooldown;
+    [SerializeField] private BulletType Type;
     public float bulletSpeed = 300;
     private float lastShotTime;
     private float bulletDestroyTime = 1f;
-    [SerializeField] private float damageAmount;
-    [SerializeField] private GunType Type;
     // Update is called once per frame
     void Update()
     {
