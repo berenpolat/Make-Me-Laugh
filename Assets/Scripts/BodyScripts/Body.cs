@@ -9,10 +9,7 @@ namespace BodyScripts
         [SerializeField] private float speed = 5f;
         private bool isAssigned = false; // New boolean flag
 
-        public bool IsAssigned()
-        {
-            return isAssigned;
-        }
+        public bool IsAssigned => isAssigned;
 
         public void AssignHelper(HelperMovements helper)
         {

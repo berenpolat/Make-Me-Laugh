@@ -369,6 +369,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1219812833483809542, guid: a903305b2d7312248b0c526df8ed1d81, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3485713341922126548, guid: a903305b2d7312248b0c526df8ed1d81, type: 3}
       propertyPath: m_LocalPosition.x
       value: -16.330698
@@ -963,6 +967,10 @@ PrefabInstance:
       value: Helper (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3426531263839878489, guid: dab51242b23336f44af9038c468f2b68, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3426531263839878489, guid: dab51242b23336f44af9038c468f2b68, type: 3}
       propertyPath: m_TagString
       value: Helper
       objectReference: {fileID: 0}
@@ -974,6 +982,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 7841944383321557150, guid: 02bcb9e1441f73c4ea800928195d3911, type: 3}
+    - target: {fileID: 5455353142530953051, guid: dab51242b23336f44af9038c468f2b68, type: 3}
+      propertyPath: bodyRange
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 7262212312703285565, guid: dab51242b23336f44af9038c468f2b68, type: 3}
       propertyPath: m_Mass
       value: 50
@@ -1323,6 +1335,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 7841944383321557150, guid: 02bcb9e1441f73c4ea800928195d3911, type: 3}
+    - target: {fileID: 5455353142530953051, guid: dab51242b23336f44af9038c468f2b68, type: 3}
+      propertyPath: bodyRange
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 7262212312703285565, guid: dab51242b23336f44af9038c468f2b68, type: 3}
       propertyPath: m_Mass
       value: 50
