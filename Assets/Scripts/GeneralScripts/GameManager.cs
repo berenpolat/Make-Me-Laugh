@@ -50,11 +50,17 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("DecreaseHappinessPerSecond", 1f, 1f);
     }
 
-    public void UpdateBudget(float budget)
+    
+    public void DisplayBudget(float budget)
     {
         budgetText.text = currentMoney.ToString();
     }
 
+    public void DisplayHappiness(float happiness)
+    {
+    }
+    
+    
     public bool DoesPlayerHaveEnoughMoney(int requestedPurchaseAmount)
     {
         return currentMoney >= requestedPurchaseAmount;
