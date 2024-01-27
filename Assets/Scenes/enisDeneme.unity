@@ -478,12 +478,23 @@ MonoBehaviour:
     - {fileID: 5220072224333187519, guid: 4f29223097da66e4fabc25db27cf663d, type: 3}
     - {fileID: 295572108211559698, guid: 82941b778c64eef4daa1af5e84f5ae10, type: 3}
     boss: {fileID: 5814291446911824051, guid: cce8e3083cab1d943b50e8851eddc79e, type: 3}
+    gifts: []
     spawnInterval: 0.2
   - waveName: "haz\u0131r olll"
     noOfEnemies: 2
     typeOfEnemies:
     - {fileID: 5220072224333187519, guid: 4f29223097da66e4fabc25db27cf663d, type: 3}
     boss: {fileID: 0}
+    gifts:
+    - {fileID: 5960171890192642236, guid: a4bba8759cbe500439456771223aa299, type: 3}
+    spawnInterval: 0
+  - waveName: 3.Wave
+    noOfEnemies: 1
+    typeOfEnemies:
+    - {fileID: 5220072224333187519, guid: 4f29223097da66e4fabc25db27cf663d, type: 3}
+    boss: {fileID: 0}
+    gifts:
+    - {fileID: 5960171890192642236, guid: a4bba8759cbe500439456771223aa299, type: 3}
     spawnInterval: 0
   spawnPoints:
   - {fileID: 23214515}
