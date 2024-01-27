@@ -6,10 +6,10 @@ public class mortar : MonoBehaviour
 {
     public Transform firePoint; // Fýrlatma noktasý
     public Rigidbody projectilePrefab; // Fýrlatýlacak obje prefabý
-    public float firingAngle = 45f; // Açý
-    public float firingSpeed = 20f; // Hýz
-    public float detectionRange = 10f; // Algýlama mesafesi
-    public float fireRate = 1f; // Atýþ hýzý
+    [SerializeField]private float firingAngle; // Açý (derece cinsinden)
+    [SerializeField]private float firingSpeed; // Hýz
+    [SerializeField]private float detectionRange; // Algýlama mesafesi
+    [SerializeField]private float fireRate; // Atýþ hýzý
     private float nextFireTime = 0f; // Sonraki atýþ zamaný
     private Transform currentTarget; // Aktif hedef
 
@@ -53,14 +53,18 @@ public class mortar : MonoBehaviour
         // Hedefe doðru vektörü hesapla
         Vector3 targetDir = targetPosition - firePointPosition;
 
-        // Açýyý dereceden radyana çevir
+        // Yatay mesafeyi ve yükseklik farkýný hesapla
+        float horizontalDistance = Vector3.Distance(new Vector3(targetPosition.x, 0f, targetPosition.z), new Vector3(firePointPosition.x, 0f, firePointPosition.z));
+        float verticalDistance = targetPosition.y - firePointPosition.y;
+
+        // Açýyý dereceden radyana çevir ve atanacak açýyý ayarla
         float angle = firingAngle * Mathf.Deg2Rad;
 
         // Yatay mesafeyi hesapla
         float distance = Vector3.Distance(firePointPosition, targetPosition);
 
-        // Gerekli hýzý hesapla
-        float projectileSpeed = Mathf.Sqrt(distance * Physics.gravity.magnitude / Mathf.Sin(2 * angle));
+        // Hýzý kullanarak projectileSpeed'i ayarla
+        float projectileSpeed = firingSpeed;
 
         // Fýrlatma kuvveti vektörünü hesapla ve uygula
         Vector3 velocity = projectileSpeed * targetDir.normalized;

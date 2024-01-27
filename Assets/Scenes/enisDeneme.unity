@@ -1792,6 +1792,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: gun
       objectReference: {fileID: 0}
+    - target: {fileID: 4688184613806265022, guid: 7dba3599e3140204eaeb4353563be51a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688184613806265022, guid: 7dba3599e3140204eaeb4353563be51a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4688184613806265022, guid: 7dba3599e3140204eaeb4353563be51a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8581157596159895270, guid: 7dba3599e3140204eaeb4353563be51a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1832,6 +1844,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8955229373674696530, guid: 7dba3599e3140204eaeb4353563be51a, type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 1399421874}
+    - target: {fileID: 8955229373674696530, guid: 7dba3599e3140204eaeb4353563be51a, type: 3}
+      propertyPath: firingAngle
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955229373674696530, guid: 7dba3599e3140204eaeb4353563be51a, type: 3}
+      propertyPath: firingSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955229373674696530, guid: 7dba3599e3140204eaeb4353563be51a, type: 3}
+      propertyPath: projectileSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8955229373674696530, guid: 7dba3599e3140204eaeb4353563be51a, type: 3}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 7227868972865755291, guid: 36d4fee34b7b361458240a30bb63a911, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
