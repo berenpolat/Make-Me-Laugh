@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class mortar : MonoBehaviour
 {
-    public Transform firePoint; // Fýrlatma noktasý
-    public Rigidbody projectilePrefab; // Fýrlatýlacak obje prefabý
-    [SerializeField]private float firingAngle; // Açý (derece cinsinden)
-    [SerializeField]private float firingSpeed; // Hýz
-    [SerializeField]private float detectionRange; // Algýlama mesafesi
-    [SerializeField]private float fireRate; // Atýþ hýzý
-    private float nextFireTime = 0f; // Sonraki atýþ zamaný
+    public Transform firePoint; // Fï¿½rlatma noktasï¿½
+    public Rigidbody projectilePrefab; // Fï¿½rlatï¿½lacak obje prefabï¿½
+    [SerializeField]private float firingAngle; // Aï¿½ï¿½ (derece cinsinden)
+    [SerializeField]private float firingSpeed; // Hï¿½z
+    [SerializeField]private float detectionRange; // Algï¿½lama mesafesi
+    [SerializeField]private float fireRate; // Atï¿½ï¿½ hï¿½zï¿½
+    private float nextFireTime = 0f; // Sonraki atï¿½ï¿½ zamanï¿½
     private Transform currentTarget; // Aktif hedef
 
     void Update()
@@ -44,30 +44,34 @@ public class mortar : MonoBehaviour
 
     void FireAtTarget(Vector3 targetPosition)
     {
-        // Fire point'te bir pozisyon oluþtur
         Vector3 firePointPosition = firePoint.position;
 
-        // Objeyi fýrlatma iþlemi
-        Rigidbody projectileInstance = Instantiate(projectilePrefab, firePointPosition, Quaternion.identity);
-
-        // Hedefe doðru vektörü hesapla
+        // Calculate the direction towards the target
         Vector3 targetDir = targetPosition - firePointPosition;
 
-        // Yatay mesafeyi ve yükseklik farkýný hesapla
+        // Calculate horizontal distance
         float horizontalDistance = Vector3.Distance(new Vector3(targetPosition.x, 0f, targetPosition.z), new Vector3(firePointPosition.x, 0f, firePointPosition.z));
+
+        // Calculate vertical distance
         float verticalDistance = targetPosition.y - firePointPosition.y;
 
-        // Açýyý dereceden radyana çevir ve atanacak açýyý ayarla
-        float angle = firingAngle * Mathf.Deg2Rad;
+        // Calculate the firing angle based on horizontal and vertical distances
+        float angle = Mathf.Atan((verticalDistance + horizontalDistance * Mathf.Tan(firingAngle * Mathf.Deg2Rad)) / horizontalDistance);
 
-        // Yatay mesafeyi hesapla
+        // Calculate the distance to the target
         float distance = Vector3.Distance(firePointPosition, targetPosition);
 
-        // Hýzý kullanarak projectileSpeed'i ayarla
+        // Calculate the initial velocity components
         float projectileSpeed = firingSpeed;
+        float initialVelocityX = Mathf.Sqrt(projectileSpeed * projectileSpeed / (1 + Mathf.Tan(angle) * Mathf.Tan(angle)));
+        float initialVelocityY = initialVelocityX * Mathf.Tan(angle);
 
-        // Fýrlatma kuvveti vektörünü hesapla ve uygula
-        Vector3 velocity = projectileSpeed * targetDir.normalized;
+        // Calculate the initial velocity vector
+        Vector3 velocity = targetDir.normalized * initialVelocityX;
+        velocity.y = initialVelocityY;
+
+        // Instantiate the projectile and set its velocity
+        Rigidbody projectileInstance = Instantiate(projectilePrefab, firePointPosition, Quaternion.identity);
         projectileInstance.velocity = velocity;
     }
 }
