@@ -1,5 +1,7 @@
 using System;
+using BodyScripts;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace EnemyScripts
 {
@@ -12,17 +14,18 @@ namespace EnemyScripts
     }
 
     [System.Serializable]
-    public struct MoneyAndPointInformation
+    public struct BonusToGivePlayer
     {
         public float givenPointsToThePlayer;
         public float givenMoneyToThePlayer;
+        public float givenHappinessToPlayer;
     }
     public class EnemyAI : MonoBehaviour
     {
         [SerializeField] private EnemyType enemyType;
         [SerializeField] private float damageAmount;
         [SerializeField] private float maxHp;
-        [SerializeField] private MoneyAndPointInformation moneyAndPointInformation;
+        [FormerlySerializedAs("moneyAndPointInformation")] [SerializeField] private BonusToGivePlayer bonusToGivePlayer;
         [SerializeField] private GameObject deadBodyPrefab;
         
         //TODO: Add animation control for attack status
@@ -47,14 +50,15 @@ namespace EnemyScripts
             return currentHp <= 0;
         }
 
-        public MoneyAndPointInformation GetMoneyAndPointInformation()
+        public BonusToGivePlayer GetMoneyAndPointInformation()
         {
-            return moneyAndPointInformation;
+            return bonusToGivePlayer;
         }
 
         public void DestroyEnemy()
         {
-            Instantiate(deadBodyPrefab, transform.position, transform.rotation);
+            GameObject tempGameObject = Instantiate(deadBodyPrefab, transform.position, transform.rotation);
+            tempGameObject.GetComponent<Body>().GivenHappinessLevelToPlayer = bonusToGivePlayer.givenHappinessToPlayer;
             Destroy(gameObject);
         }
     }

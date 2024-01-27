@@ -8,8 +8,15 @@ namespace BodyScripts
         [SerializeField] private float speed = 10f;
         private HelperFeatures currentHelper;
         private bool isAssigned;
+        private float givenHappinessLevelToPlayer;
 
         public bool IsAssigned => isAssigned;
+
+        public float GivenHappinessLevelToPlayer
+        {
+            get => givenHappinessLevelToPlayer;
+            set => givenHappinessLevelToPlayer = value;
+        }
 
         public void AssignHelper(HelperFeatures helper)
         {

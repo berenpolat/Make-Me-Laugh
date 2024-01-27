@@ -45,6 +45,7 @@ public class HelperFeatures : MonoBehaviour
 
             if (distance < 0.1f)
             {
+                GameManager.Instance.CurrentHappiness += currentBody.GivenHappinessLevelToPlayer;
                 Destroy(currentBody.gameObject);
                 isAbleToSearchForBody = true;
                 isCollidingWithBody = false;

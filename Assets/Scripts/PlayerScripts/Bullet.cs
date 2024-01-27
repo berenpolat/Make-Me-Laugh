@@ -9,7 +9,7 @@ namespace PlayerScripts
         [SerializeField] private float damageAmount;
         [SerializeField] private Shooting.BulletType bulletType;
 
-        private MoneyAndPointInformation moneyAndPointInformation;
+        private BonusToGivePlayer bonusToGivePlayer;
         private EnemyAI enemyAI;
         private Collider[] collidersInsideRadius;
         private float bombEffectArea = 5f;
@@ -42,9 +42,10 @@ namespace PlayerScripts
                 Destroy(gameObject);
                 return;
             }
-            moneyAndPointInformation = enemyAI.GetMoneyAndPointInformation();
-            GameManager.Instance.CurrentMoney += moneyAndPointInformation.givenMoneyToThePlayer;
-            GameManager.Instance.CurrentPoints += moneyAndPointInformation.givenPointsToThePlayer;
+            bonusToGivePlayer = enemyAI.GetMoneyAndPointInformation();
+            GameManager.Instance.CurrentMoney += bonusToGivePlayer.givenMoneyToThePlayer;
+            GameManager.Instance.CurrentPoints += bonusToGivePlayer.givenPointsToThePlayer;
+            GameManager.Instance.CurrentHappiness += bonusToGivePlayer.givenHappinessToPlayer;
             enemyAI.DestroyEnemy();
             Destroy(gameObject);
         }
