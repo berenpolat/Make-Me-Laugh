@@ -23,16 +23,9 @@ public class mortar : MonoBehaviour
             {
                 FireAtTarget(currentTarget.position);
                 nextFireTime = Time.time + 1f / fireRate;
-                if (currentTarget != null)
-                {
-                    Vector3 directionToEnemy = (currentTarget.position -transform.position);
-                    directionToEnemy.y = 0; // Ignore vertical component
 
-                    Quaternion lookRotation = Quaternion.LookRotation(directionToEnemy);
-
-                    // Set the head's rotation without interpolation
-                    transform.rotation = lookRotation;
-                }
+                 
+               
             }
         }
     }
