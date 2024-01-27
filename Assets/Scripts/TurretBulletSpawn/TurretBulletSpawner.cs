@@ -40,18 +40,21 @@ namespace TurretBulletSpawn
                 }
             }
         }
-
+   
         private void Update()
         {
             if (targetEnemy != null)
             {
-                Vector3 directionToEnemy = (targetEnemy.transform.position - transform.position).normalized;
+                Vector3 directionToEnemy = (targetEnemy.transform.position - head.transform.position);
+                directionToEnemy.y = 0; // Ignore vertical component
+
                 Quaternion lookRotation = Quaternion.LookRotation(directionToEnemy);
-        
-                // Use Slerp for smoother rotation
-                head.transform.rotation = Quaternion.Slerp(head.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+
+                // Set the head's rotation without interpolation
+                head.transform.rotation = lookRotation;
             }
         }
+
 
 
         void SpawnBullet()
