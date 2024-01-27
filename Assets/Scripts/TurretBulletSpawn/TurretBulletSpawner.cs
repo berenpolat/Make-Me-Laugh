@@ -1,3 +1,5 @@
+using System;
+using DG.Tweening;
 using UnityEngine;
 
 namespace TurretBulletSpawn
@@ -9,7 +11,9 @@ namespace TurretBulletSpawn
         [SerializeField] private float spawnInterval = 10f;
         [SerializeField] private float bulletLifetime = 5f;
         [SerializeField] private float shootingRange = 5f;
-
+        [SerializeField] private GameObject head;
+        [SerializeField] private float rotationSpeed;
+        
         private GameObject targetEnemy;
 
         void Start()
@@ -28,11 +32,27 @@ namespace TurretBulletSpawn
                 if (distance <= shootingRange)
                 {
                     targetEnemy = enemy;
+
+                    
+
                     SpawnBullet();
                     break; // Break the loop after spawning one bullet
                 }
             }
         }
+
+        private void Update()
+        {
+            if (targetEnemy != null)
+            {
+                Vector3 directionToEnemy = (targetEnemy.transform.position - transform.position).normalized;
+                Quaternion lookRotation = Quaternion.LookRotation(directionToEnemy);
+        
+                // Use Slerp for smoother rotation
+                head.transform.rotation = Quaternion.Slerp(head.transform.rotation, lookRotation, Time.deltaTime * rotationSpeed);
+            }
+        }
+
 
         void SpawnBullet()
         {

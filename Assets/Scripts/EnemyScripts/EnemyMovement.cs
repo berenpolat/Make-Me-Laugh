@@ -26,7 +26,7 @@ namespace EnemyScripts
         private void FixedUpdate()
         {
             currentPosition = transform.position;
-            playerPosition = player.transform.position;
+            //playerPosition = player.transform.position;
             distanceBetweenPlayer = Vector3.Distance(currentPosition, playerPosition);
             moveStep = moveSpeed * Time.deltaTime;
             
