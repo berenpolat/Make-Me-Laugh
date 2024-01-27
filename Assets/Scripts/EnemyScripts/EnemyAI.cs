@@ -23,6 +23,7 @@ namespace EnemyScripts
         [SerializeField] private float damageAmount;
         [SerializeField] private float maxHp;
         [SerializeField] private MoneyAndPointInformation moneyAndPointInformation;
+        [SerializeField] private GameObject deadBodyPrefab;
         
         //TODO: Add animation control for attack status
 
@@ -53,7 +54,7 @@ namespace EnemyScripts
 
         public void DestroyEnemy()
         {
-            //TODO: Also spawn body prefab here
+            Instantiate(deadBodyPrefab, transform.position, transform.rotation);
             Destroy(gameObject);
         }
     }
