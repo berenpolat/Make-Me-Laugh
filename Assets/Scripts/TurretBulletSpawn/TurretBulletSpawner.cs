@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace TurretBulletSpawn
@@ -7,41 +6,38 @@ namespace TurretBulletSpawn
     {
         [SerializeField] private GameObject bulletPrefab;
         [SerializeField] private float bulletSpeed = 10f;
-        [SerializeField] private float spawnInterval = 5f;
+        [SerializeField] private float spawnInterval = 10f;
         [SerializeField] private float bulletLifetime = 5f;
         [SerializeField] private float shootingRange = 5f;
 
         private GameObject targetEnemy;
-        private bool canSpawnBullet = true;
 
-        void Update()
+        void Start()
         {
-            if (canSpawnBullet)
+            InvokeRepeating("CheckForEnemy", 0f, spawnInterval);
+        }
+
+        void CheckForEnemy()
+        {
+            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+            foreach (GameObject enemy in enemies)
             {
-                GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+                float distance = Vector3.Distance(transform.position, enemy.transform.position);
 
-                foreach (GameObject enemy in enemies)
+                if (distance <= shootingRange)
                 {
-                    float distance = Vector3.Distance(transform.position, enemy.transform.position);
-
-                    if (distance <= shootingRange)
-                    {
-                        targetEnemy = enemy;
-                        SpawnBullet();
-                        canSpawnBullet = false; // Set the flag to prevent spawning multiple bullets
-                        Invoke("ResetSpawnFlag", spawnInterval); // Reset the flag after spawnInterval seconds
-                        break; // Break the loop after spawning one bullet
-                    }
+                    targetEnemy = enemy;
+                    SpawnBullet();
+                    break; // Break the loop after spawning one bullet
                 }
             }
         }
-        
 
         void SpawnBullet()
         {
             if (targetEnemy != null)
             {
-                transform.LookAt(targetEnemy.transform);
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
                 Vector3 direction = (targetEnemy.transform.position - transform.position).normalized;
@@ -53,20 +49,13 @@ namespace TurretBulletSpawn
             }
         }
 
-        void ResetSpawnFlag()
+        void OnTriggerEnter(Collider other)
         {
-            canSpawnBullet = true;
-        }
-
-
-        private void OnCollisionEnter(Collision other)
-        {
-            if (other.gameObject.CompareTag("Enemy"))
+            if (other.CompareTag("Enemy"))
             {
                 Destroy(gameObject);
                 Destroy(other.gameObject); // enemy kill
             }
         }
-
     }
 }

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace BodyScripts
@@ -7,41 +6,32 @@ namespace BodyScripts
     {
         private HelperMovements currentHelper;
         [SerializeField] private float speed = 5f;
-        private bool isAssigned = false; // New boolean flag
-
-        public bool IsAssigned => isAssigned;
-
-        public void AssignHelper(HelperMovements helper)
-        {
-            currentHelper = helper;
-            isAssigned = true;
-        }
-        
 
         private void Update()
         {
             if (currentHelper != null && currentHelper.isCollidingWithBody)
             {
+                // Follow the current helper when colliding
                 transform.position = Vector3.MoveTowards(transform.position, currentHelper.transform.position, speed * Time.deltaTime);
             }
         }
 
-
-        private void OnTriggerEnter(Collider other)
+        private void OnCollisionEnter(Collision collision)
         {
-            if (other.CompareTag("Helper"))
+            if (collision.gameObject.CompareTag("Helper"))
             {
-                currentHelper = other.gameObject.GetComponent<HelperMovements>();
+                // Set the current helper to the one it is colliding with
+                currentHelper = collision.gameObject.GetComponent<HelperMovements>();
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        private void OnCollisionExit(Collision collision)
         {
-            if (other.CompareTag("Helper"))
+            if (collision.gameObject.CompareTag("Helper"))
             {
+                // Reset the current helper when no longer colliding
                 currentHelper = null;
             }
         }
-
     }
 }

@@ -207,3 +207,4 @@ MonoBehaviour:
   spawnInterval: 1
   bulletLifetime: 5
   shootingRange: 10
+  bullet: {fileID: 1863960424043050562, guid: ff1470c6c16a5594cb76f0541eb496b4, type: 3}
