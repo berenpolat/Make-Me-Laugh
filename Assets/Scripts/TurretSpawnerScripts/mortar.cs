@@ -17,14 +17,26 @@ public class mortar : MonoBehaviour
     {
         if (Time.time > nextFireTime)
         {
+            // Düşmanları güncellemek için FindTarget fonksiyonunu çağır
             FindTarget();
             if (currentTarget != null)
             {
                 FireAtTarget(currentTarget.position);
                 nextFireTime = Time.time + 1f / fireRate;
+                if (currentTarget != null)
+                {
+                    Vector3 directionToEnemy = (currentTarget.position -transform.position);
+                    directionToEnemy.y = 0; // Ignore vertical component
+
+                    Quaternion lookRotation = Quaternion.LookRotation(directionToEnemy);
+
+                    // Set the head's rotation without interpolation
+                    transform.rotation = lookRotation;
+                }
             }
         }
     }
+   
 
     void FindTarget()
     {
