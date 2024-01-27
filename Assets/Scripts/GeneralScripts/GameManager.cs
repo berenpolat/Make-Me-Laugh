@@ -2,14 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     private float currentPoints;
     private float currentMoney;
-    
+    [SerializeField] private Text budgetText;
     private static GameManager _instance;
     public static GameManager Instance
+    
     {
         get
         {
@@ -34,6 +36,12 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         _instance = this;
+        budgetText.text = "0";
+    }
+
+    public void UpdateBudget(float budget)
+    {
+        budgetText.text = currentMoney.ToString();
     }
 
     public bool DoesPlayerHaveEnoughMoney(int requestedPurchaseAmount)
