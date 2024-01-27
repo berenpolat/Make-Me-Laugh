@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Body
   - Helper
+  - Floor
   layers:
   - Default
   - TransparentFX

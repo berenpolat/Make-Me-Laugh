@@ -11,24 +11,42 @@ namespace PlayerScripts
 
         private MoneyAndPointInformation moneyAndPointInformation;
         private EnemyAI enemyAI;
+        private Collider[] collidersInsideRadius;
+        private float bombEffectArea = 5f;
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.gameObject.tag.Equals("Enemy") && other.gameObject.GetComponent<EnemyAI>() != null)
+            if (bulletType == Shooting.BulletType.Mortar && other.gameObject.CompareTag("Floor"))
             {
-                enemyAI = other.gameObject.GetComponent<EnemyAI>();
-                enemyAI.LowerHealth(damageAmount);
-                if (!enemyAI.CheckIsDead())
+                collidersInsideRadius = Physics.OverlapSphere(transform.position, bombEffectArea);
+                foreach (var collider in collidersInsideRadius)
                 {
-                    Destroy(gameObject);
-                    return;
+                    if (collider.gameObject.tag.Equals("Enemy"))
+                    {
+                        DestroyEnemyOperations(collider.gameObject);
+                    }
                 }
-                moneyAndPointInformation = enemyAI.GetMoneyAndPointInformation();
-                GameManager.Instance.CurrentMoney += moneyAndPointInformation.givenMoneyToThePlayer;
-                GameManager.Instance.CurrentPoints += moneyAndPointInformation.givenPointsToThePlayer;
-                enemyAI.DestroyEnemy();
-                Destroy(gameObject);
             }
+            else if (other.gameObject.CompareTag("Enemy") && other.gameObject.GetComponent<EnemyAI>() != null)
+            {
+                DestroyEnemyOperations(other.gameObject);
+            }
+        }
+
+        private void DestroyEnemyOperations(GameObject enemy)
+        {
+            enemyAI = enemy.GetComponent<EnemyAI>();
+            enemyAI.LowerHealth(damageAmount);
+            if (!enemyAI.CheckIsDead())
+            {
+                Destroy(gameObject);
+                return;
+            }
+            moneyAndPointInformation = enemyAI.GetMoneyAndPointInformation();
+            GameManager.Instance.CurrentMoney += moneyAndPointInformation.givenMoneyToThePlayer;
+            GameManager.Instance.CurrentPoints += moneyAndPointInformation.givenPointsToThePlayer;
+            enemyAI.DestroyEnemy();
+            Destroy(gameObject);
         }
     }
 }

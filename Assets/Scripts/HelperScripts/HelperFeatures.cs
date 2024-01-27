@@ -6,9 +6,8 @@ using UnityEngine;
 
 public class HelperFeatures : MonoBehaviour
 {
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject childTower;
-
+    private GameObject player;
+    private GameObject childTower;
     private float moveSpeed = 10f;
     private float maxDistanceFromBody = 5f;
     private Body currentBody;
@@ -17,6 +16,12 @@ public class HelperFeatures : MonoBehaviour
     private bool isAbleToSearchForBody = true;
     
     public bool IsCollidingWithBody => isCollidingWithBody;
+
+    private void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        childTower = GameObject.FindGameObjectWithTag("Tower");
+    }
 
     private void FixedUpdate()
     {

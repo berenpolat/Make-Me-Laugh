@@ -63,7 +63,7 @@ public class WaveSpawner : MonoBehaviour
     {
         currentWaveNumber++;
         canSpawn = true;
-        SpawnGift(); // Hediye spawn et
+        
     }
     void SpawnWave()
     {
@@ -81,8 +81,8 @@ public class WaveSpawner : MonoBehaviour
                Instantiate(currentWave.boss, randomPoint.position, Quaternion.identity);
                bossSpawned = true;
            }
-       
 
+            SpawnGift(); // Hediye spawn et
             currentWave.noOfEnemies--;
             nextSpawnTime = Time.time + currentWave.spawnInterval;
             if (currentWave.noOfEnemies == 0)
