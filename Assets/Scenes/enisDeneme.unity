@@ -405,6 +405,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1657391972}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &478994742 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2173230295110383633, guid: 2a1ef741b52b88d4f95025048ef758fb, type: 3}
+  m_PrefabInstance: {fileID: 9125856082535832992}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &710581042
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,14 +473,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - waveName: ilkWave
-    noOfEnemies: 5
+    noOfEnemies: 3
     typeOfEnemies:
     - {fileID: 5220072224333187519, guid: 4f29223097da66e4fabc25db27cf663d, type: 3}
+    - {fileID: 295572108211559698, guid: 82941b778c64eef4daa1af5e84f5ae10, type: 3}
+    boss: {fileID: 5814291446911824051, guid: cce8e3083cab1d943b50e8851eddc79e, type: 3}
     spawnInterval: 0.2
   - waveName: "haz\u0131r olll"
     noOfEnemies: 2
     typeOfEnemies:
     - {fileID: 5220072224333187519, guid: 4f29223097da66e4fabc25db27cf663d, type: 3}
+    boss: {fileID: 0}
     spawnInterval: 0
   spawnPoints:
   - {fileID: 23214515}
@@ -836,6 +844,7 @@ GameObject:
   - component: {fileID: 1088244015}
   - component: {fileID: 1088244014}
   - component: {fileID: 1088244019}
+  - component: {fileID: 1088244020}
   m_Layer: 0
   m_Name: PlayerDeneme
   m_TagString: Player
@@ -969,6 +978,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 464e98c79230a5d40942ee6273eb8ff2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerSpeed: 5
+  dashMultiplier: 20
+  dashDuration: 0.5
+--- !u!143 &1088244020
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088244013}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1094944605
 GameObject:
   m_ObjectHideFlags: 0
@@ -1477,6 +1515,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 24.714, y: 0, z: 0}
+--- !u!1 &1948249370
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1948249371}
+  m_Layer: 0
+  m_Name: global
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1948249371
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948249370}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2089570238
 GameObject:
   m_ObjectHideFlags: 0
@@ -1607,6 +1676,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pistol
       objectReference: {fileID: 0}
+    - target: {fileID: 3191464750168010996, guid: 2a1ef741b52b88d4f95025048ef758fb, type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 7652839435711669504, guid: 66308dccf5d3c6243a5b4bceb6dd8b6b, type: 3}
+    - target: {fileID: 3191464750168010996, guid: 2a1ef741b52b88d4f95025048ef758fb, type: 3}
+      propertyPath: shootCooldown
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3191464750168010996, guid: 2a1ef741b52b88d4f95025048ef758fb, type: 3}
+      propertyPath: bulletSpawnPoint
+      value: 
+      objectReference: {fileID: 478994742}
     - target: {fileID: 3515803613056557222, guid: 2a1ef741b52b88d4f95025048ef758fb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1662,3 +1743,4 @@ SceneRoots:
   - {fileID: 718900143}
   - {fileID: 1020425212}
   - {fileID: 1088244018}
+  - {fileID: 1948249371}

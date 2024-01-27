@@ -18,7 +18,7 @@ public class Shooting : MonoBehaviour
     [SerializeField] private BulletType Type;
     public float bulletSpeed = 300;
     private float lastShotTime;
-    private float bulletDestroyTime = 1f;
+    private float bulletDestroyTime = 1.5f;
     // Update is called once per frame
     void Update()
     {

@@ -9,7 +9,8 @@ public class Wave
     public string waveName;  // dalga ismi
     public int noOfEnemies; // düþman sayýsý
     public GameObject[] typeOfEnemies; // düþman türleri
-    public float spawnInterval; //spawn aralýðý
+    public GameObject boss;
+    public float spawnInterval; //spawn aralýðý  
 }
 public class WaveSpawner : MonoBehaviour
 {
@@ -18,13 +19,15 @@ public class WaveSpawner : MonoBehaviour
     public Animator animator;
     public Text waveName;
 
+
     private Wave currentWave;
     private int currentWaveNumber;
     private float nextSpawnTime;
 
     private bool canSpawn = true;
     private bool canAnimate = false;
-
+    private bool bossSpawned = false;
+    
     // Update is called once per frame
     void Update()
     {
@@ -40,6 +43,8 @@ public class WaveSpawner : MonoBehaviour
                     waveName.text = waves[currentWaveNumber + 1].waveName;
                     animator.SetTrigger("WaveComplate");
                     canAnimate = false;
+                    bossSpawned = false;
+                    
                 }
             }
 
@@ -61,8 +66,16 @@ public class WaveSpawner : MonoBehaviour
         if (canSpawn && nextSpawnTime < Time.time)
         {
             GameObject randomEnemy = currentWave.typeOfEnemies[Random.Range(0, currentWave.typeOfEnemies.Length)];
+           
+           GameObject Bosses = currentWave.boss;
             Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
             Instantiate(randomEnemy, randomPoint.position, Quaternion.identity);
+           if (!bossSpawned && currentWave.boss != null)
+           {
+               Instantiate(currentWave.boss, randomPoint.position, Quaternion.identity);
+               bossSpawned = true;
+           }
+
             currentWave.noOfEnemies--;
             nextSpawnTime = Time.time + currentWave.spawnInterval;
             if (currentWave.noOfEnemies == 0)
