@@ -5,43 +5,31 @@ namespace BodyScripts
 {
     public class Body : MonoBehaviour
     {
-        private HelperMovements currentHelper;
-        [SerializeField] private float speed = 5f;
-        private bool isAssigned = false; // New boolean flag
+        [SerializeField] private float speed = 10f;
+        private HelperFeatures currentHelper;
+        private bool isAssigned;
 
         public bool IsAssigned => isAssigned;
 
-        public void AssignHelper(HelperMovements helper)
+        public void AssignHelper(HelperFeatures helper)
         {
-            currentHelper = helper;
+            if(helper != null)
+                currentHelper = helper;
+        }
+
+        public void MakeAssignStatusTrue()
+        {
             isAssigned = true;
         }
         
-
-        private void Update()
+        private void FixedUpdate()
         {
-            if (currentHelper != null && currentHelper.isCollidingWithBody)
+            if(!currentHelper)
+                return;
+            if (currentHelper.IsCollidingWithBody)
             {
                 transform.position = Vector3.MoveTowards(transform.position, currentHelper.transform.position, speed * Time.deltaTime);
             }
         }
-
-
-        private void OnTriggerEnter(Collider other)
-        {
-            if (other.CompareTag("Helper"))
-            {
-                currentHelper = other.gameObject.GetComponent<HelperMovements>();
-            }
-        }
-
-        private void OnTriggerExit(Collider other)
-        {
-            if (other.CompareTag("Helper"))
-            {
-                currentHelper = null;
-            }
-        }
-
     }
 }
