@@ -9,6 +9,7 @@ public class Shooting : MonoBehaviour
         Shotgun = 0,
         Rifle = 1,
         Pistol = 2,
+        Mortar = 3,
     }
     public Transform bulletSpawnPoint;
 
