@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3102974134904033860}
   - component: {fileID: 5594755510427119690}
   - component: {fileID: 4658283272398904726}
-  - component: {fileID: 5455353142530953051}
   - component: {fileID: 7262212312703285565}
+  - component: {fileID: 3636837438358201818}
   m_Layer: 0
   m_Name: Helper
   m_TagString: Untagged
@@ -107,24 +107,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5455353142530953051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3426531263839878489}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7ecd5ead5a96ec49848eff03edafa17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  bodyRange: 5
-  playerTag: Player
-  bodyTag: Body
-  towerTag: Tower
-  isCollidingWithBody: 0
 --- !u!54 &7262212312703285565
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -152,3 +134,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &3636837438358201818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3426531263839878489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a14c941fe705a4aa3a213c8cc84aa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
