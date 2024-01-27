@@ -5,6 +5,7 @@ namespace TurretSpawnerScripts
     public class FloorClickHandler : MonoBehaviour
     {
         public TurretSpawner turretButton;
+        public TurretSpawner turretButton2;
 
         
         void Update()
