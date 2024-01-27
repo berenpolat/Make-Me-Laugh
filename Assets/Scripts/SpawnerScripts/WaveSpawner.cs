@@ -17,6 +17,7 @@ public class WaveSpawner : MonoBehaviour
 {
     public Wave[] waves;
     public Transform[] spawnPoints;
+    public Transform[] giftSpawnPoints;
    
     public Animator animator;
     public Text waveName;
@@ -99,7 +100,7 @@ public class WaveSpawner : MonoBehaviour
         if (currentWave.gifts == null || currentWave.gifts.Length == 0)
             return;
 
-        Transform randomPoint = spawnPoints[Random.Range(0, spawnPoints.Length)];
+        Transform randomPoint = giftSpawnPoints[Random.Range(0, giftSpawnPoints.Length)];
         GameObject randomGift = currentWave.gifts[Random.Range(0, currentWave.gifts.Length)]; // Rastgele hediye seç
         GameObject spawnedGift = Instantiate(randomGift, randomPoint.position, Quaternion.identity); // Hediye spawn et
         StartCoroutine(DestroyGiftAfterDelay(spawnedGift, 10f)); // Hediyeyi belirli bir süre sonra yok et
