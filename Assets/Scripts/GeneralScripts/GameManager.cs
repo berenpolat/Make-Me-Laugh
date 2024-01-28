@@ -108,6 +108,14 @@ public class GameManager : MonoBehaviour
         return currentMoney >= requestedPurchaseAmount;
     }
 
+    public void BuyStuff(int requestedPurchaseAmount)
+    {
+        if (DoesPlayerHaveEnoughMoney(requestedPurchaseAmount))
+        {
+            CurrentMoney -= requestedPurchaseAmount;
+        }
+    }
+
     private void DecreaseHappinessPerSecond()
     {
         currentHappiness -= happinessDropRate;
