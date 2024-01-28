@@ -8,17 +8,23 @@ public class HelperMovements : MonoBehaviour
     public float bodyRange = 5f;
     public string playerTag = "Player";
     public string bodyTag = "Body";
-    public string towerTag = "Tower"; 
+    public string towerTag = "Tower";
 
     [HideInInspector] public bool isCollidingWithBody = false;
 
     private GameObject currentBody;
     private Transform towerTransform;
 
+    private float initialYOffset;
+    private float yOffset = 3f; // Adjusted Y offset
+
     void Start()
     {
         transform.Rotate(180, 0, 0);
         towerTransform = GameObject.FindGameObjectWithTag(towerTag).transform;
+
+        // Store the initial Y position to use as a reference for the offset
+        initialYOffset = transform.position.y;
     }
 
     void Update()
@@ -28,7 +34,6 @@ public class HelperMovements : MonoBehaviour
 
         if (!isCollidingWithBody)
         {
-            
             GameObject body = FindClosestBody();
 
             if (player != null && !isCollidingWithBody)
@@ -63,6 +68,9 @@ public class HelperMovements : MonoBehaviour
                 }
             }
         }
+
+        // Adjust Y-position to maintain a fixed offset
+        transform.position = new Vector3(transform.position.x, initialYOffset + yOffset, transform.position.z);
     }
 
     GameObject FindClosestBody()
