@@ -26,13 +26,14 @@ namespace EnemyScripts
         private void FixedUpdate()
         {
             currentPosition = transform.position;
-            //playerPosition = player.transform.position;
+            playerPosition = player.transform.position;
             distanceBetweenPlayer = Vector3.Distance(currentPosition, playerPosition);
             moveStep = moveSpeed * Time.deltaTime;
-            
+            Debug.Log("Dist: " + distanceBetweenPlayer);
             currentPosition = Vector3.MoveTowards(currentPosition,
                 distanceBetweenPlayer > maxDistanceBetweenPlayer ? childTowerPosition : playerPosition, 
                 moveStep);
+            transform.LookAt(distanceBetweenPlayer > maxDistanceBetweenPlayer ? childTowerPosition : playerPosition);
             transform.position = currentPosition;
         }
     }
