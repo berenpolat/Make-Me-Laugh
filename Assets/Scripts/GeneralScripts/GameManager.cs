@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Sprite childSadSprite;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameFinishedPanel;
+    [SerializeField] private GameObject buttonPanels;
     
     private float currentPoints;
     private float currentMoney = 0;
@@ -76,6 +77,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         gameFinishedPanel.SetActive(true);
+        buttonPanels.SetActive(false);
     }
 
     public void DisplayHappiness()
@@ -124,6 +126,7 @@ public class GameManager : MonoBehaviour
         if (currentHappiness <= 0)
         {
             Time.timeScale = 0;
+            buttonPanels.SetActive(false);
             gameOverPanel.SetActive(true);
         }
     }
