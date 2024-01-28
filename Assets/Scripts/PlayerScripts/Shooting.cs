@@ -35,6 +35,4 @@ public class Shooting : MonoBehaviour
         Destroy(bullet, bulletDestroyTime);
         lastShotTime = Time.time;
     }
-    
-    
 }
