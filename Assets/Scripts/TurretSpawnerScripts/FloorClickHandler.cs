@@ -7,7 +7,7 @@ namespace TurretSpawnerScripts
         public TurretSpawner turretButton;
         public TurretSpawner turretButton2;
 
-        
+
         void Update()
         {
             if (turretButton.isPlacingTurret)

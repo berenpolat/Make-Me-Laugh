@@ -52,10 +52,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drunk Run Forward
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a6343bfd504f5e1469295e5775906732, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: a6343bfd504f5e1469295e5775906732, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 52877638cafc413489eed26654387e2e, type: 2}
+    - target: {fileID: 5866666021909216657, guid: a6343bfd504f5e1469295e5775906732, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:RightHandRing2'\n\tTransform 'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform
+        'mixamorig:RightArm'\n\tTransform 'mixamorig:LeftLeg'\n\tTransform 'mixamorig:LeftShoulder'\n\tTransform
+        'mixamorig:RightHandRing1'\n\tTransform 'mixamorig:RightHandIndex3'\n\tand
+        more ...\n\tFrom animation clip 'mixamo.com'"
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: a6343bfd504f5e1469295e5775906732, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
@@ -63,5 +77,35 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a6343bfd504f5e1469295e5775906732, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2421337908776947732}
   m_SourcePrefab: {fileID: 100100000, guid: a6343bfd504f5e1469295e5775906732, type: 3}
+--- !u!1 &6113334992029084095 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: a6343bfd504f5e1469295e5775906732, type: 3}
+  m_PrefabInstance: {fileID: 6347687442523804910}
+  m_PrefabAsset: {fileID: 0}
+--- !u!64 &2421337908776947732
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6113334992029084095}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
