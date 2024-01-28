@@ -981,7 +981,7 @@ MonoBehaviour:
     givenPointsToThePlayer: 0
     givenMoneyToThePlayer: 0
     givenHappinessToPlayer: 0
-  deadBodyPrefabBunny: {fileID: 0}
+  deadBodyPrefabBunny: {fileID: 919132149155446097, guid: c3d4f4664e993c9458e2b8223845ef64, type: 3}
   deadBodyPrefabClown: {fileID: 0}
   deadBodyPrefabHugiWugi: {fileID: 0}
 --- !u!114 &7853611969051425225
