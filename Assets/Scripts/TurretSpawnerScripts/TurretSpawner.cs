@@ -1,10 +1,14 @@
+using System;
 using UnityEngine;
 
 public class TurretSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject TurretPrefab;
+    public GameManager gm;
     private GameObject turretPreview;
     public bool isPlacingTurret = false;
+    public bool isOk = false;
+    
 
     public void ToggleTurretPlacement()
     {
@@ -22,8 +26,10 @@ public class TurretSpawner : MonoBehaviour
 
     private void CreateTurretPreview()
     {
-        turretPreview = Instantiate(TurretPrefab, Vector3.zero, Quaternion.identity);
-        turretPreview.SetActive(false); // Disable the preview initially
+  
+            turretPreview = Instantiate(TurretPrefab, Vector3.zero, Quaternion.identity);
+            turretPreview.SetActive(false); // Disable the preview initially
+        gm.BuyStuff(100);
     }
 
     public void UpdateTurretPreview(Vector3 position)
@@ -45,7 +51,10 @@ public class TurretSpawner : MonoBehaviour
 
     public void PlaceTurret(Vector3 position)
     {
-        ToggleTurretPlacement();
-        Instantiate(TurretPrefab, position, Quaternion.identity);
+      
+            ToggleTurretPlacement();
+            Instantiate(TurretPrefab, position, Quaternion.identity);
+        
+        
     }
 }

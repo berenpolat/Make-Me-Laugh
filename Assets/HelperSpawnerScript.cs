@@ -9,13 +9,13 @@ public class HelperSpawnerScript : MonoBehaviour
     public GameObject healerPrefab;
     private bool buttonUsed = false;
     public Button helperButton;
+    public GameManager gm;
     
     private ColorBlock theColor;
  
     // Use this for initialization
     void Awake () {
         helperButton = GetComponent<Button>();
-
     }
     public void SpawnHealer()
     {
@@ -24,8 +24,8 @@ public class HelperSpawnerScript : MonoBehaviour
         
         if (player != null && !buttonUsed)
         {
+            gm.BuyStuff(50);
             healerPrefab.SetActive(true);
-
         }
         
     }

@@ -3,12 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using EnemyScripts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Button = UnityEngine.UIElements.Button;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Text budgetText;
     [SerializeField] private float maxHappiness = 100;
+    [SerializeField] private float currentMoney = 100;
     [SerializeField] private float happinessDropRate;
     [SerializeField] private Slider happinessBar;
     [SerializeField] private Image childImagePlace;
@@ -21,8 +24,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject buttonPanels;
     
     private float currentPoints;
-    private float currentMoney = 0;
     private float currentHappiness;
+
+    [SerializeField] private UnityEngine.UI.Button TurretButton1;
+    [SerializeField] private UnityEngine.UI.Button TurretButton2;
+    [SerializeField] private UnityEngine.UI.Button HelperButton;
+    [SerializeField] private UnityEngine.UI.Button ShotGunButton;
+    [SerializeField] private UnityEngine.UI.Button PistolButton;
+    [SerializeField] private UnityEngine.UI.Button AKButton;
+
+
+
     
     private static GameManager _instance;
     public static GameManager Instance
@@ -68,6 +80,36 @@ public class GameManager : MonoBehaviour
         currentHappiness = maxHappiness;
         budgetText.text = "0";
         InvokeRepeating(nameof(DecreaseHappinessPerSecond), 1f, 1f);
+    }
+
+    private void Update()
+    {
+        DisplayBudget();
+        if (currentMoney < 100)
+        {
+            TurretButton1.interactable = false;
+            TurretButton2.interactable = false;
+
+        }
+
+        if (currentMoney < 50)
+        {
+            HelperButton.interactable = false;
+        }
+
+        if (currentMoney < 10)
+        {
+            PistolButton.interactable = false;
+        }
+
+        if (currentHappiness < 20)
+        {
+            ShotGunButton.interactable = false;
+        }
+        if (currentHappiness < 20)
+        {
+            AKButton.interactable = false;
+        }
     }
 
     public void DisplayBudget()
@@ -141,11 +183,11 @@ public class GameManager : MonoBehaviour
 
     public void ReturnToTheMainMenu()
     {
-        
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void PlayAgain()
     {
-        
+        SceneManager.LoadScene("SampleScene");
     }
 }

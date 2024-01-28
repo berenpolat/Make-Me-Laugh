@@ -8,6 +8,8 @@ public class WeaponScript : MonoBehaviour
     [SerializeField] private GameObject ak;
     [SerializeField] private GameObject pistol;
     [SerializeField] private Transform playerHand;
+    public GameManager gm;
+    private bool isBuyedBefore = false;
 
     private void Start()
     {
@@ -20,6 +22,12 @@ public class WeaponScript : MonoBehaviour
         Debug.Log("EnableShotgun clicked");
         DisableAllWeapons();
         shotgun.SetActive(true);
+        if (!isBuyedBefore)
+        {
+            gm.BuyStuff(20);
+            isBuyedBefore = !isBuyedBefore;
+        }
+        
     }
 
     public void EnableAK()
@@ -27,6 +35,11 @@ public class WeaponScript : MonoBehaviour
         Debug.Log("EnableAK clicked");
         DisableAllWeapons();
         ak.SetActive(true);
+        if (!isBuyedBefore)
+        {
+            gm.BuyStuff(30);
+            isBuyedBefore = !isBuyedBefore;
+        }
     }
 
     public void EnablePistol()
@@ -34,6 +47,11 @@ public class WeaponScript : MonoBehaviour
         Debug.Log("EnablePistol clicked");
         DisableAllWeapons();
         pistol.SetActive(true);
+        if (!isBuyedBefore)
+        {
+            gm.BuyStuff(10);
+            isBuyedBefore = !isBuyedBefore;
+        }
     }
 
     private void DisableAllWeapons()
