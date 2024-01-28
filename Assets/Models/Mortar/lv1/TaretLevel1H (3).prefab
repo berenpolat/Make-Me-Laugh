@@ -1256,7 +1256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firePoint: {fileID: 25564429229046351}
-  projectilePrefab: {fileID: 7227868972865755291, guid: 36d4fee34b7b361458240a30bb63a911, type: 3}
+  projectilePrefab: {fileID: 6806510329987067491, guid: a429ccef09ec648489b53fb9d785705d, type: 3}
   firingAngle: 50
   firingSpeed: 10
   detectionRange: 20

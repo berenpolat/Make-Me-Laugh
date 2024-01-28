@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,9 +24,6 @@ public class mortar : MonoBehaviour
             {
                 FireAtTarget(currentTarget.position);
                 nextFireTime = Time.time + 1f / fireRate;
-
-                 
-               
             }
         }
     }
@@ -78,5 +76,16 @@ public class mortar : MonoBehaviour
         // Instantiate the projectile and set its velocity
         Rigidbody projectileInstance = Instantiate(projectilePrefab, firePointPosition, Quaternion.identity);
         projectileInstance.velocity = velocity;
+
+        // Destroy the projectile after 3 seconds
+        Destroy(projectileInstance.gameObject, 2f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Floor")
+        {
+            Destroy(gameObject);
+        }
     }
 }
