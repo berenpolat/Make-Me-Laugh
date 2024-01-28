@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject gameFinishedPanel;
     
     private float currentPoints;
-    private float currentMoney;
+    private float currentMoney = 0;
     private float currentHappiness;
     
     private static GameManager _instance;
@@ -61,10 +61,11 @@ public class GameManager : MonoBehaviour
         InvokeRepeating(nameof(DecreaseHappinessPerSecond), 1f, 1f);
     }
 
-    public void DisplayBudget(float budget)
+    public void DisplayBudget()
     {
         budgetText.text = currentMoney.ToString();
     }
+
 
     public void BearSpawned(EnemyAI bear)
     {
