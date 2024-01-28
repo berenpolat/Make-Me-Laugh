@@ -16,7 +16,7 @@ public class HelperMovements : MonoBehaviour
     private Transform towerTransform;
 
     private float initialYOffset;
-    private float yOffset = 3f; // Adjusted Y offset
+    public float yOffset = 3f; // Adjusted Y offset
 
     void Start()
     {
