@@ -10,7 +10,7 @@ public class movement : MonoBehaviour
     public float dashMultiplier = 20f;
     public float dashDuration = 0.5f;
     private float dashTimer;
-
+    public Animator anim;
 
     void Start()
     {
@@ -21,7 +21,8 @@ public class movement : MonoBehaviour
     {
         // Player movement
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
+        anim.SetFloat("vertical", Input.GetAxis("Vertical"));
+        anim.SetFloat("horizontal", Input.GetAxis("Horizontal"));
         // Dash input
         if (Input.GetKeyDown(KeyCode.RightShift) && dashTimer <= 0f)
         {
