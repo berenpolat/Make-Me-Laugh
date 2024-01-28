@@ -7,10 +7,10 @@ namespace EnemyScripts
 {
     enum EnemyType
     {
-        Melee = 0,
-        Ranged = 1,
-        MeleeBoss = 2,
-        RangedBoss = 3,
+        Bunny = 0,
+        Clown = 1,
+        HugiWugi = 2,
+        Bear = 3,
     }
 
     [System.Serializable]
@@ -26,18 +26,24 @@ namespace EnemyScripts
         [SerializeField] private float damageAmount;
         [SerializeField] private float maxHp;
         [FormerlySerializedAs("moneyAndPointInformation")] [SerializeField] private BonusToGivePlayer bonusToGivePlayer;
-        [SerializeField] private GameObject deadBodyPrefab;
+        [FormerlySerializedAs("deadBodyPrefab")] [SerializeField] private GameObject deadBodyPrefabBunny;
+        [SerializeField] private GameObject deadBodyPrefabClown;
+        [FormerlySerializedAs("deadBodyPrefabHuggle")] [SerializeField] private GameObject deadBodyPrefabHugiWugi;
         
-        //TODO: Add animation control for attack status
-
         private float currentHp;
 
-        //TODO: For enemy hp bar
+        public event Action<EnemyAI> GameFinished;
+
         public float CurrentHp => currentHp;
 
         private void Start()
         {
             currentHp = maxHp;
+            if (enemyType == EnemyType.Bear)
+            {
+                GameObject tempObject = GameObject.FindGameObjectWithTag("GameManager");
+                tempObject.GetComponent<GameManager>().BearSpawned(this);
+            }
         }
 
         public void LowerHealth(float decreaseAmount)
@@ -57,8 +63,30 @@ namespace EnemyScripts
 
         public void DestroyEnemy()
         {
-            GameObject tempGameObject = Instantiate(deadBodyPrefab, transform.position, transform.rotation);
-            tempGameObject.GetComponent<Body>().GivenHappinessLevelToPlayer = bonusToGivePlayer.givenHappinessToPlayer;
+            GameObject tempGameObject = null;
+            switch (enemyType)
+            {
+                case EnemyType.Bunny:
+                    tempGameObject = Instantiate(deadBodyPrefabBunny, transform.position, transform.rotation);
+                    break;
+                case EnemyType.Clown:
+                    tempGameObject = Instantiate(deadBodyPrefabClown, transform.position, transform.rotation);
+                    break;
+                case EnemyType.HugiWugi:
+                    tempGameObject = Instantiate(deadBodyPrefabHugiWugi, transform.position, transform.rotation);
+                    break;
+                case EnemyType.Bear:
+                    GameFinished?.Invoke(this);
+                    break;
+                default:
+                    tempGameObject = Instantiate(deadBodyPrefabBunny, transform.position, transform.rotation);
+                    break;
+            }
+
+            if (tempGameObject != null)
+            {
+                tempGameObject.GetComponent<Body>().GivenHappinessLevelToPlayer = bonusToGivePlayer.givenHappinessToPlayer;
+            }
             Destroy(gameObject);
         }
     }
