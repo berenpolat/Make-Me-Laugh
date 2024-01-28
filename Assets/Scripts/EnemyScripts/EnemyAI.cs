@@ -92,7 +92,7 @@ namespace EnemyScripts
             switch (enemyType)
             {
                 case EnemyType.Bunny:
-                    tempGameObject = Instantiate(deadBodyPrefabBunny, transform.position, transform.rotation);
+                    tempGameObject = Instantiate(deadBodyPrefabBunny, new Vector3(transform.position.x, transform.position.y + 2.37f, transform.position.z - 5.81f), transform.rotation);
                     break;
                 case EnemyType.Clown:
                     tempGameObject = Instantiate(deadBodyPrefabClown, transform.position, transform.rotation);
@@ -108,11 +108,11 @@ namespace EnemyScripts
                     break;
             }
 
+            Destroy(gameObject);
             if (tempGameObject != null)
             {
                 tempGameObject.GetComponent<Body>().GivenHappinessLevelToPlayer = bonusToGivePlayer.givenHappinessToPlayer;
             }
-            Destroy(gameObject);
         }
     }
 }
