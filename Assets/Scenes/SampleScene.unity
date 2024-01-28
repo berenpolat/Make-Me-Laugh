@@ -2624,7 +2624,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   smoothSpeed: 0.125
   offset: {x: 0, y: 0, z: 0}
-  panSpeed: 10
+  panSpeed: 100
   _camera: {fileID: 963194227}
   player: {fileID: 7841944383321557150, guid: 02bcb9e1441f73c4ea800928195d3911, type: 3}
 --- !u!1 &990992918

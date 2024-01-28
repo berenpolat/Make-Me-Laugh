@@ -3,60 +3,44 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-     #region Camera Options
+    #region Camera Options
     [Header("Camera Options")]
     [SerializeField] private float smoothSpeed = 0.125f;
     [SerializeField] private Vector3 offset;
     [SerializeField] private float panSpeed = 50f;
-
     #endregion
+
     public Camera _camera;
     public GameObject player;
 
     #region Unity Methods
-
-     void Start()
+    void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
         _camera = gameObject.GetComponent<Camera>();
     }
-     
 
     private void F1Pressed()
     {
         F1Position();
-
     }
 
     private void FixedUpdate()
     {
-        Vector3 cameraPos = _camera.transform.position;
+        // Get the player's movement input
+        float horizontalMovement = Input.GetAxis("Horizontal");
+        float verticalMovement = Input.GetAxis("Vertical");
 
-        Vector3 mousePos = Input.mousePosition;
+        // Calculate the new position based on player's movement
+        Vector3 newPosition = transform.position;
+        newPosition += new Vector3(horizontalMovement, 0, verticalMovement) * panSpeed * Time.deltaTime;
 
-        if (mousePos.x <= 25)
-        {
-            cameraPos.x -= panSpeed * Time.deltaTime;
-        }
-        if (mousePos.x >= Screen.width - 50)
-        {
-            cameraPos.x += panSpeed * Time.deltaTime;
-        }
-        if (mousePos.y <= 25)
-        {
-            cameraPos.z -= panSpeed * Time.deltaTime;
-        }
-        if (mousePos.y >= Screen.height - 50)
-        {
-            cameraPos.z += panSpeed * Time.deltaTime;
-        }
-
-        transform.position = cameraPos;
-
+        // Apply the new position
+        transform.position = Vector3.Lerp(transform.position, newPosition, smoothSpeed);
     }
+
     void Update()
     {
-
         if (Input.GetKey(KeyCode.F1))
         {
             Cursor.lockState = CursorLockMode.Confined;
@@ -75,37 +59,15 @@ public class CameraFollow : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        // if (Input.GetAxis("Mouse ScrollWheel") > 0f && _camera.fieldOfView < 115f)
-        // {
-        //     //  _camera.DOFieldOfView(_camera.fieldOfView + 15, .4f);
-        //     gameObject.transform.DOMoveY(gameObject.transform.position.y + 15, .4f);
-        //     // cameraSpeed = cameraSpeed - 2;
-        // }
-        //
-        //
-        // if (Input.GetAxis("Mouse ScrollWheel") < 0f && _camera.fieldOfView > 45)
-        // {
-        //     // _camera.DOFieldOfView(_camera.fieldOfView-15, .4f);
-        //     gameObject.transform.DOMoveY(gameObject.transform.position.y - 15, .4f);
-        //     // cameraSpeed = cameraSpeed + 2;
-        // }
-
         if (Input.GetKey(KeyCode.UpArrow))
         {
             _camera.transform.DORotate(new Vector3(_camera.transform.eulerAngles.x + 1, _camera.transform.eulerAngles.y, _camera.transform.eulerAngles.z), .2f);
         }
 
-
         if (Input.GetKey(KeyCode.DownArrow))
         {
             _camera.transform.DORotate(new Vector3(_camera.transform.eulerAngles.x - 1, _camera.transform.eulerAngles.y, _camera.transform.eulerAngles.z), .2f);
         }
-
-
-
-
-
-
     }
     #endregion
 
@@ -116,12 +78,14 @@ public class CameraFollow : MonoBehaviour
         _camera.transform.DORotate(new Vector3(45, _camera.transform.rotation.y, _camera.transform.rotation.z), .4f);
         _camera.transform.DOMove(new Vector3(desiredPosition.x, 150, desiredPosition.z - 150), .4f);
     }
+
     private void F2Position()
     {
         Vector3 desiredPosition = player.transform.position + offset;
         _camera.transform.DORotate(new Vector3(9, _camera.transform.rotation.y, _camera.transform.rotation.z), .4f);
         _camera.transform.DOMove(new Vector3(desiredPosition.x, desiredPosition.y + 8, desiredPosition.z - 50f), .4f);
     }
+
     private void F3Position()
     {
         Vector3 desiredPosition = player.transform.position + offset;
