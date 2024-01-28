@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Button = UnityEngine.UIElements.Button;
 
 public class HelperSpawnerScript : MonoBehaviour
 {
@@ -15,7 +14,7 @@ public class HelperSpawnerScript : MonoBehaviour
  
     // Use this for initialization
     void Awake () {
-        helperButton = GetComponent<Button>();
+        helperButton = GetComponent<UnityEngine.UI.Button>();
     }
     public void SpawnHealer()
     {

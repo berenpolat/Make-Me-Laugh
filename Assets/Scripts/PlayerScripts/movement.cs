@@ -17,12 +17,14 @@ public class movement : MonoBehaviour
         controller = GetComponent<CharacterController>();
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         // Player movement
         Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        move.Normalize();
         anim.SetFloat("vertical", Input.GetAxis("Vertical"));
         anim.SetFloat("horizontal", Input.GetAxis("Horizontal"));
+
         // Dash input
         if (Input.GetKeyDown(KeyCode.RightShift) && dashTimer <= 0f)
         {

@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
         set 
         {
             currentHappiness = value;
+            DisplayHappiness();
             if(currentHappiness <= 0)
             {
                 Time.timeScale = 0;
@@ -78,37 +79,57 @@ public class GameManager : MonoBehaviour
     {
         _instance = this;
         currentHappiness = maxHappiness;
-        budgetText.text = "0";
+        DisplayBudget();
         InvokeRepeating(nameof(DecreaseHappinessPerSecond), 1f, 1f);
     }
 
     private void Update()
     {
         DisplayBudget();
-        if (currentMoney < 100)
+        if (currentMoney >= 100)
+        {
+            TurretButton1.interactable = true;
+            TurretButton2.interactable = true;
+            PistolButton.interactable = true;
+            HelperButton.interactable = true;
+            AKButton.interactable = true;
+            ShotGunButton.interactable = true;
+        }
+        if (currentMoney < 100 && currentMoney > 50)
         {
             TurretButton1.interactable = false;
             TurretButton2.interactable = false;
-
+            PistolButton.interactable = true;
+            HelperButton.interactable = true;
+            AKButton.interactable = true;
+            ShotGunButton.interactable = true;
         }
-
-        if (currentMoney < 50)
+        else if (currentMoney < 50 && currentMoney > 20)
         {
+            TurretButton1.interactable = false;
+            TurretButton2.interactable = false;
+            PistolButton.interactable = true;
             HelperButton.interactable = false;
+            AKButton.interactable = true;
+            ShotGunButton.interactable = true;
         }
-
-        if (currentMoney < 10)
+        else if (currentMoney < 20 && currentMoney > 10)
         {
-            PistolButton.interactable = false;
-        }
-
-        if (currentHappiness < 20)
-        {
+            TurretButton1.interactable = false;
+            TurretButton2.interactable = false;
+            PistolButton.interactable = true;
+            HelperButton.interactable = false;
+            AKButton.interactable = false;
             ShotGunButton.interactable = false;
         }
-        if (currentHappiness < 20)
+        else if (currentMoney < 10)
         {
+            TurretButton1.interactable = false;
+            TurretButton2.interactable = false;
+            PistolButton.interactable = false;
+            HelperButton.interactable = false;
             AKButton.interactable = false;
+            ShotGunButton.interactable = false;
         }
     }
 
@@ -116,8 +137,7 @@ public class GameManager : MonoBehaviour
     {
         budgetText.text = currentMoney.ToString();
     }
-
-
+    
     public void BearSpawned(EnemyAI bear)
     {
         bear.GameFinished += OnGameFinished;

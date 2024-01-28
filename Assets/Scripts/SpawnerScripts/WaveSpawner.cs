@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class Wave
 {
     public string waveName;  // dalga ismi
-    public int noOfEnemies; // düþman sayýsý
-    public GameObject[] typeOfEnemies; // düþman türleri
+    public int noOfEnemies; // dï¿½ï¿½man sayï¿½sï¿½
+    public GameObject[] typeOfEnemies; // dï¿½ï¿½man tï¿½rleri
     public GameObject boss;
     public GameObject[] gifts; // hediyeler
-    public float spawnInterval; //spawn aralýðý  
+    public float spawnInterval; //spawn aralï¿½ï¿½ï¿½  
 }
 public class WaveSpawner : MonoBehaviour
 {
@@ -46,6 +46,12 @@ public class WaveSpawner : MonoBehaviour
                 {
                     waveName.text = waves[currentWaveNumber + 1].waveName;
                     animator.SetTrigger("WaveComplate");
+
+                    if (GameManager.Instance.CurrentHappiness <= 50)
+                    {
+                        GameManager.Instance.CurrentHappiness += 15;
+                    }
+                    
                     canAnimate = false;
                     bossSpawned = false;
                     
@@ -96,14 +102,14 @@ public class WaveSpawner : MonoBehaviour
     }
     void SpawnGift()
     {
-        // Eðer dalga için hediye tanýmlanmamýþsa, bu metodu atla
+        // Eï¿½er dalga iï¿½in hediye tanï¿½mlanmamï¿½ï¿½sa, bu metodu atla
         if (currentWave.gifts == null || currentWave.gifts.Length == 0)
             return;
 
         Transform randomPoint = giftSpawnPoints[Random.Range(0, giftSpawnPoints.Length)];
-        GameObject randomGift = currentWave.gifts[Random.Range(0, currentWave.gifts.Length)]; // Rastgele hediye seç
+        GameObject randomGift = currentWave.gifts[Random.Range(0, currentWave.gifts.Length)]; // Rastgele hediye seï¿½
         GameObject spawnedGift = Instantiate(randomGift, randomPoint.position, Quaternion.identity); // Hediye spawn et
-        StartCoroutine(DestroyGiftAfterDelay(spawnedGift, 10f)); // Hediyeyi belirli bir süre sonra yok et
+        StartCoroutine(DestroyGiftAfterDelay(spawnedGift, 10f)); // Hediyeyi belirli bir sï¿½re sonra yok et
         IEnumerator DestroyGiftAfterDelay(GameObject gift, float delay)
         {
             yield return new WaitForSeconds(delay);

@@ -978,9 +978,9 @@ MonoBehaviour:
   damageAmount: 10
   maxHp: 25
   bonusToGivePlayer:
-    givenPointsToThePlayer: 0
-    givenMoneyToThePlayer: 0
-    givenHappinessToPlayer: 0
+    givenPointsToThePlayer: 20
+    givenMoneyToThePlayer: 30
+    givenHappinessToPlayer: 7
   deadBodyPrefabBunny: {fileID: 919132149155446097, guid: c3d4f4664e993c9458e2b8223845ef64, type: 3}
   deadBodyPrefabClown: {fileID: 0}
   deadBodyPrefabHugiWugi: {fileID: 0}
@@ -996,7 +996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f4ebe8995e8a44a8fbd4e00d2e4743, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
+  moveSpeed: 7
   maxDistanceBetweenPlayer: 5
 --- !u!136 &2503613128085450645
 CapsuleCollider:

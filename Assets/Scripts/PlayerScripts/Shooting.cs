@@ -32,7 +32,6 @@ public class Shooting : MonoBehaviour
     {
         var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
         bullet.GetComponent<Rigidbody>().velocity = bulletSpawnPoint.forward * bulletSpeed;
-        Destroy(bullet, bulletDestroyTime);
         lastShotTime = Time.time;
     }
 }

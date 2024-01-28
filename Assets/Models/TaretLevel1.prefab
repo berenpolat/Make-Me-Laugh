@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1e91cbf3aaa00c45a304759d91c1e6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 1863960424043050562, guid: ff1470c6c16a5594cb76f0541eb496b4, type: 3}
+  bulletPrefab: {fileID: 8815954750492478105, guid: b5c7a67afa6af1440b190f7741af6bb0, type: 3}
   bulletSpeed: 100
   spawnInterval: 1
   bulletLifetime: 5
-  shootingRange: 10
+  shootingRange: 30
   head: {fileID: 2615167178823635850}
   rotationSpeed: 20
 --- !u!1 &439624312584832269
