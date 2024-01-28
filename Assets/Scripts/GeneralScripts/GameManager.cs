@@ -18,9 +18,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Sprite childSadSprite;
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private GameObject gameFinishedPanel;
+    [SerializeField] private GameObject buttonPanels;
     
     private float currentPoints;
-    private float currentMoney;
+    private float currentMoney = 0;
     private float currentHappiness;
     
     private static GameManager _instance;
@@ -69,10 +70,11 @@ public class GameManager : MonoBehaviour
         InvokeRepeating(nameof(DecreaseHappinessPerSecond), 1f, 1f);
     }
 
-    public void DisplayBudget(float budget)
+    public void DisplayBudget()
     {
         budgetText.text = currentMoney.ToString();
     }
+
 
     public void BearSpawned(EnemyAI bear)
     {
@@ -83,6 +85,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0;
         gameFinishedPanel.SetActive(true);
+        buttonPanels.SetActive(false);
     }
 
     public void DisplayHappiness()
@@ -116,6 +119,14 @@ public class GameManager : MonoBehaviour
         return currentMoney >= requestedPurchaseAmount;
     }
 
+    public void BuyStuff(int requestedPurchaseAmount)
+    {
+        if (DoesPlayerHaveEnoughMoney(requestedPurchaseAmount))
+        {
+            CurrentMoney -= requestedPurchaseAmount;
+        }
+    }
+
     private void DecreaseHappinessPerSecond()
     {
         currentHappiness -= happinessDropRate;
@@ -123,6 +134,7 @@ public class GameManager : MonoBehaviour
         if (currentHappiness <= 0)
         {
             Time.timeScale = 0;
+            buttonPanels.SetActive(false);
             gameOverPanel.SetActive(true);
         }
     }
