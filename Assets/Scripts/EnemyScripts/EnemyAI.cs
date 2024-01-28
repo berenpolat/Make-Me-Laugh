@@ -29,7 +29,7 @@ namespace EnemyScripts
         [FormerlySerializedAs("deadBodyPrefab")] [SerializeField] private GameObject deadBodyPrefabBunny;
         [SerializeField] private GameObject deadBodyPrefabClown;
         [FormerlySerializedAs("deadBodyPrefabHuggle")] [SerializeField] private GameObject deadBodyPrefabHugiWugi;
-        
+        private Animator animator;
         private float currentHp;
 
         public event Action<EnemyAI> GameFinished;
@@ -38,12 +38,37 @@ namespace EnemyScripts
 
         private void Start()
         {
+            animator = GetComponent<Animator>();
             currentHp = maxHp;
             if (enemyType == EnemyType.Bear)
             {
                 GameObject tempObject = GameObject.FindGameObjectWithTag("GameManager");
                 tempObject.GetComponent<GameManager>().BearSpawned(this);
             }
+            InvokeRepeating(nameof(DealDamageToPlayer), 1.5f, 1.5f);
+
+        }
+
+        private void DealDamageToPlayer()
+        {
+            Collider[] colliders = Physics.OverlapSphere(transform.position, 3f);
+            if (colliders.Length != 0)
+            {
+                foreach (Collider col in colliders)
+                {
+                    if (col.gameObject.CompareTag("Player") || col.gameObject.CompareTag("Tower"))
+                    {
+                        GameManager.Instance.CurrentHappiness -= damageAmount;
+                        animator.SetBool("Attack2", true);
+
+                    }
+                    else
+                    {
+                        animator.SetBool("Attack2", false);
+                    }
+                }
+            }
+
         }
 
         public void LowerHealth(float decreaseAmount)

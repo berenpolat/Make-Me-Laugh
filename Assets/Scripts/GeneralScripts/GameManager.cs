@@ -63,7 +63,15 @@ public class GameManager : MonoBehaviour
     public float CurrentHappiness
     {
         get => currentHappiness;
-        set => currentHappiness = value;
+        set 
+        {
+            currentHappiness = value;
+            if(currentHappiness <= 0)
+            {
+                Time.timeScale = 0;
+                gameOverPanel.SetActive(true);
+            }
+        }
     }
 
     private void Awake()
